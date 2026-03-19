@@ -19,8 +19,8 @@ source .env
 ## Deploy Traefik
 
 ```shell
-helm upgrade --install traefik traefik/traefik --create-namespace --namespace traefik --values traefik/values.yaml --devel
-kubectl apply -f https://raw.githubusercontent.com/traefik/traefik/v3.7/docs/content/reference/dynamic-configuration/kubernetes-ingress-nginx-rbac.yml
+helm upgrade --install traefik traefik/traefik --create-namespace --namespace traefik --values traefik/values.yaml
+kubectl apply -f https://raw.githubusercontent.com/traefik/traefik/v3.6/docs/content/reference/dynamic-configuration/kubernetes-ingress-nginx-rbac.yml
 kubectl apply -f traefik/ingressclasses.yaml
 ```
 

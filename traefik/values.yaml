@@ -1,4 +1,5 @@
 image:
+  # tag: "v3.6.8"
   tag: "v3.7.0-ea.1"
   pullPolicy: Always
 deployment:
@@ -17,13 +18,17 @@ providers:
   kubernetesIngress:
     enabled: true
     ingressClass: "traefik"
-  kubernetesIngressNGINX:
+  # kubernetesIngressNGINX:
+  kubernetesIngressNginx:
     enabled: true
-    ingressClass: "nginx"
-    controllerClass: "k8s.io/ingress-nginx"
-    watchIngressWithoutClass: false
-    ingressClassByName: false
-    allowSnippetAnnotations: true
+    # ingressClass: "nginx-tmp"
+    ingressClass: "tmp-nginx"
+    # controllerClass: "k8s.io/ingress-nginx"
+    # watchIngressWithoutClass: false
+    ingressClassByName: true
+    publishService:
+      enabled: true
+    # allowSnippetAnnotations: true
 logs:
   general:
     format: json
@@ -37,18 +42,6 @@ logs:
         defaultmode: keep
       headers:
         defaultmode: keep
-affinity:
-  podAntiAffinity:
-    preferredDuringSchedulingIgnoredDuringExecution:
-      - podAffinityTerm:
-          labelSelector:
-            matchExpressions:
-              - key: "app.kubernetes.io/name"
-                operator: In
-                values:
-                  - traefik
-          topologyKey: kubernetes.io/hostname
-        weight: 100
 resources:
   requests:
     memory: 384Mi
