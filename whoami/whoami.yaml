@@ -31,7 +31,7 @@ spec:
         image: traefik/whoami
         env:
           - name: WHOAMI_NAME
-            value: reprodd
+            value: whoami-k8s
         imagePullPolicy: Always
 ---
 apiVersion: v1
@@ -48,22 +48,6 @@ spec:
     name: whoami
   selector:
     app: whoami
-# ---
-# apiVersion: traefik.io/v1alpha1
-# kind: IngressRoute
-# metadata:
-#   name: whoami-ingress
-#   namespace: whoami
-# spec:
-#   entryPoints:
-#     - websecure
-#   routes:
-#     - kind: Rule
-#       match: Host(`whoami.hub.${CLUSTERNAME}.${DOMAINNAME}`)
-#       services:
-#         - name: whoami
-#           port: 80s
-#   tls: {}
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
