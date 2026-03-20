@@ -9,15 +9,9 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: IngressClass
 metadata:
-  name: nginx-tmp
-spec:
-  controller: k8s.io/ingress-nginx
----
-apiVersion: networking.k8s.io/v1
-kind: IngressClass
-metadata:
   name: tmp-nginx
 spec:
+  # controller: k8s.io/ingress-tmp-nginx
   controller: k8s.io/ingress-nginx
 ---
 apiVersion: networking.k8s.io/v1

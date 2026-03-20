@@ -1,0 +1,12 @@
+controller:
+  service:
+    ports:
+      http: 19081 
+      https: 19444
+  allowSnippetAnnotations: true
+  config:
+    annotations-risk-level: Critical
+  ingressClassByName: true
+  ingressClassResource:
+    enabled: false
+  ingressClass: tmp-nginx

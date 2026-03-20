@@ -5,7 +5,7 @@ repro issue with nginx provider from traefik
 ## Create cluster
 
 ```shell
-k3d cluster create ngxpvd --port 19080:80@loadbalancer --port 19443:443@loadbalancer --k3s-arg "--disable=traefik@server:0"
+k3d cluster create ngxpvd --port 19080:80@loadbalancer --port 19443:443@loadbalancer --port 19081:19081@loadbalancer --port 19444:19444@loadbalancer --k3s-arg "--disable=traefik@server:0"
 k3d kubeconfig get ngxpvd > .kubeconfig
 chmod 600 .kubeconfig
 ```
@@ -24,10 +24,16 @@ kubectl apply -f https://raw.githubusercontent.com/traefik/traefik/v3.6/docs/con
 kubectl apply -f traefik/ingressclasses.yaml
 ```
 
-## Add Dashboard
+### Add Dashboard
 
 ```shell
 envsubst < ./traefik/dashboard.yaml | kubectl apply -f -
+```
+
+## Deploy nginx
+
+```shell
+helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace ingress-nginx --create-namespace -f ingress-nginx/values.yaml
 ```
 
 ## deploy app

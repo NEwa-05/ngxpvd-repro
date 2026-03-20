@@ -21,9 +21,8 @@ providers:
   # kubernetesIngressNGINX:
   kubernetesIngressNginx:
     enabled: true
-    # ingressClass: "nginx-tmp"
     ingressClass: "tmp-nginx"
-    # controllerClass: "k8s.io/ingress-nginx"
+    # controllerClass: "k8s.io/ingress-tmp-nginx"
     # watchIngressWithoutClass: false
     ingressClassByName: true
     publishService:
